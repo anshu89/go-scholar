@@ -42,22 +42,17 @@ Others:
 	Args := make(map[string]string)
 
 	if arguments["search"].(bool) {
-		fmt.Println("serach")
+		fmt.Println("search")
 
 		query_options := []string{"--author", "--title", "--query"}
-		for _, op := range query_options {
-			if arguments[op] != nil {
-				Args[op] = arguments[op].(string)
-			}
-		}
-
 		ok := false
 		for _, op := range query_options {
 			if arguments[op] != nil {
+				Args[op] = arguments[op].(string)
 				ok = true
-				break
 			}
 		}
+
 		if !ok {
 			log.Fatal("Wrong arguments: at least one of --author, --title or --query is needed.")
 		}
